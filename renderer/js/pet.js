@@ -173,8 +173,8 @@ canvas.addEventListener('click', () => {
     renderer.setEmotion('special', 4000);
     showBubble('special');
   } else if (renderer.state.emotion !== 'special') {
-    renderer.setEmotion('pet', 2500);
-    showBubble('pet');
+    renderer.setEmotion('excited', 2500);
+    showBubble('excited');
   }
 });
 
