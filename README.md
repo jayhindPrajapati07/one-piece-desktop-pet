@@ -14,7 +14,7 @@ Most desktop pets are generic. This one is for One Piece fans — pick your favo
 - Has a **unique visual design** drawn with Canvas 2D vector art
 - Says **character-accurate quotes** based on how you interact with them
 - Runs **character-specific idle animations** (Zoro meditates, Nami counts coins, Brook plays violin…)
-- Has a **unique excited animation** that matches their personality (Luffy bounces wildly, Nami counts coins, Brook dances, Jinbe bobs powerfully…)
+- Has **unique animations for every emotion** — each character moves differently when happy, angry, sad, waving, excited, and doing their special move
 - Reacts to hover, click, triple-tap, shake, and idle timeout events
 
 ---
@@ -86,7 +86,7 @@ one-piece-desktop-pet/
     ├── selection.html   # Character picker screen
     ├── pet.html         # The transparent pet window
     └── js/
-        ├── characters.js  # All characters — vector art, quotes, behaviors, excited animations
+        ├── characters.js  # All characters — vector art, quotes, idle behaviors, per-emotion animations
         ├── renderer.js    # Animation engine (emotions, particles, idle timer)
         └── pet.js         # Interaction handler (mouse events, drag, IPC)
 ```
@@ -122,26 +122,103 @@ Every character reacts to the same set of interactions with their own unique quo
 | `angry` | Fast drag / shake | Screen shake + red flash, furrowed brows | 💢 Rage |
 | `sleep` | 5 min idle (persistent) | Closed eyes, slow breath — wakes on touch | 💤 ZZZs |
 | `wave` | On startup / tray | One arm raised and waving | — |
-| `happy` | Via tray menu | Jump animation, waving arms | ❤️ Hearts |
-| `excited` | Via tray menu | **Character-specific animation** (see table below) | varies |
-| `sad` | Via tray menu | Droopy eyes, slumped arms | 💧 Tears |
+| `happy` | Via tray menu | **Character-specific** — unique per crew member | varies |
+| `excited` | Via tray menu | **Character-specific** — unique per crew member | varies |
+| `sad` | Via tray menu | **Character-specific** — unique slump depth and memory | 💧 |
 
-### Character-Specific Excited Animations
+### Character-Specific Emotion Animations
 
-Each character's `excited` state plays a unique animation that matches their personality:
+Every emotion has a unique animation per character. Full reference below.
 
-| Character | Excited Style | Particle |
-|-----------|--------------|----------|
-| Luffy | Massive hungry bounce (20px high) — MEAT!! energy | ⭐ |
+#### 🌀 Excited
+
+| Character | Animation | Particle |
+|-----------|-----------|----------|
+| Luffy | Massive hungry bounce (20px) — MEAT!! energy | ⭐ |
 | Zoro | Sword-swing arm + battle sway | ⭐ |
 | Nami | Greedy coin-counting arm flick | 💰 |
 | Usopp | Both arms flailing wildly in opposite directions | ⭐ |
-| Sanji | Fast spin-kick shimmy + hearts — Mellorine~! | ❤️ |
-| Chopper | Rapid cute stomp bounce, arms flutter | ❤️ |
+| Sanji | Fast spin-kick shimmy — Mellorine~! | ❤️ |
+| Chopper | Rapid cute stomp bounce | ❤️ |
 | Robin | Graceful Ara ara sway, flowers bloom | 🌸 |
 | Franky | Rigid SUPER!! double-flex pose + bounce | ⭐ |
-| Brook | Yohohoho rhythm dance, both arms swinging | 🎵 |
+| Brook | Yohohoho full rhythm dance | 🎵 |
 | Jinbe | Powerful slow bob, arms spread wide | 💦 |
+
+#### ❤️ Happy
+
+| Character | Animation | Particle |
+|-----------|-----------|----------|
+| Luffy | Huge meat-excited jump (16px) | ❤️ ⭐ |
+| Zoro | Barely reacts — subtle slow nod | ⭐ (rare) |
+| Nami | Coin-excited hop | 💰 |
+| Usopp | Hero-pose pump — brave warrior!! | ⭐ |
+| Sanji | Spin flourish + horizontal sway | ❤️ |
+| Chopper | Super-fast cute bounce | ❤️ |
+| Robin | Gentle Ara ara sway | 🌸 |
+| Franky | Rigid SUPER!! pose held + bounce | ⭐ |
+| Brook | Skull-joke bounce laugh | ⭐ 🎵 |
+| Jinbe | Deep satisfied slow nod | 💦 |
+
+#### 💢 Angry
+
+| Character | Animation | Particle |
+|-----------|-----------|----------|
+| Luffy | Protect-nakama rage bounce + horizontal sway | 💢 |
+| Zoro | Battle-stance shake + horizontal sway | 💢 |
+| Nami | Foot-stamp rage + horizontal sway | 💢 |
+| Usopp | Scared-angry fast trembling | 💢 |
+| Sanji | Diable Jambe controlled fury + sway | 💢 |
+| Chopper | Stomp stomp rapid bounce — not cute IDIOT!! | 💢 |
+| Robin | Ice-cold sudden jerk — eerie calm | 💢 |
+| Franky | Heavy stomp slam + horizontal sway | 💢 |
+| Brook | Rattling bones fast shake + sway | 💢 |
+| Jinbe | Wide intimidating Fish-Man stance + sway | 💢 |
+
+#### 💧 Sad
+
+| Character | Animation | Memory referenced |
+|-----------|-----------|-------------------|
+| Luffy | Heavy slow slump | Ace |
+| Zoro | Barely moves, deep stillness | Kuina |
+| Nami | Body wilts slowly | Arlong / village |
+| Usopp | Trembling slow droop | I lied... |
+| Sanji | Cigarette slump | All Blue / Baratie |
+| Chopper | Very slow tiny droop | Hiriluk |
+| Robin | Almost no movement — haunted stillness | Ohara |
+| Franky | Heavy head-hang | Tom-san |
+| Brook | Lonely gentle sway | Laboon |
+| Jinbe | Solemn near-stillness | Tiger-san |
+
+#### 👋 Wave
+
+| Character | Animation | Particle |
+|-----------|-----------|----------|
+| Luffy | Big bouncy energetic wave | ⭐ |
+| Zoro | Stiff minimal lift — barely waves | — |
+| Nami | Flirty tilt-wave + horizontal sway | ❤️ |
+| Usopp | Frantic bounce wave — 8000 soldiers!! | ⭐ |
+| Sanji | Gentleman's flourish + gentle sway | ❤️ |
+| Chopper | Jump-wave — YOIII!! | ❤️ |
+| Robin | Graceful single-arm lift | 🌸 |
+| Franky | Massive sweeping arm wave | ⭐ |
+| Brook | Elegant top-hat sway | 🎵 |
+| Jinbe | Broad deliberate slow wave | 💦 |
+
+#### ⚡ Special *(3 rapid clicks)*
+
+| Character | Move | Animation | Particle |
+|-----------|------|-----------|----------|
+| Luffy | Gear 2nd | Fast pump bounce (18px) + cx jolt | ⭐ ❤️ |
+| Zoro | Asura | Multi-slash horizontal sway | ⭐ |
+| Nami | Thunderbolt Tempo | Sharp lightning jolt (14px) | ⭐ |
+| Usopp | Sogeking!! | Tall proud bounce (13px) | ⭐ |
+| Sanji | Hell Memories | Fast spin + large horizontal sway | ❤️ ⭐ |
+| Chopper | Monster Point | Biggest bounce of all (16px) | ⭐ ❤️ |
+| Robin | Gigante Fleur | Slow bloom sway, flowers burst | 🌸 ⭐ |
+| Franky | Coup de Vent | Forward-lean blast + horizontal sway | ⭐ |
+| Brook | Soul Parade | Full fast dance sway | 🎵 ⭐ |
+| Jinbe | Buraikan | Wide powerful stance + horizontal sway | 💦 ⭐ |
 
 ---
 
