@@ -1,6 +1,6 @@
 # ⚓ One Piece Desktop Pet
 
-A lightweight Electron desktop mascot featuring all 10 Straw Hat Pirates. Your chosen character sits on your screen, reacts to your mouse interactions, shows speech bubbles, and runs idle animations — all with a transparent, always-on-top frameless window.
+A lightweight Electron desktop mascot featuring the Straw Hat Pirates. Your chosen character sits on your screen, reacts to your mouse interactions, shows speech bubbles, and runs idle animations — all with a transparent, always-on-top frameless window.
 
 ![One Piece Desktop Pet]<img width="1440" height="1050" alt="image" src="https://github.com/user-attachments/assets/70f2e34b-61fa-498d-9516-a4b96e7a47dd" />
 
@@ -14,7 +14,8 @@ Most desktop pets are generic. This one is for One Piece fans — pick your favo
 - Has a **unique visual design** drawn with Canvas 2D vector art
 - Says **character-accurate quotes** based on how you interact with them
 - Runs **character-specific idle animations** (Zoro meditates, Nami counts coins, Brook plays violin…)
-- Reacts to hover, click, double-click, long-press, and drag events
+- Has a **unique excited animation** that matches their personality (Luffy bounces wildly, Nami counts coins, Brook dances, Jinbe bobs powerfully…)
+- Reacts to hover, click, triple-tap, shake, and idle timeout events
 
 ---
 
@@ -85,7 +86,7 @@ one-piece-desktop-pet/
     ├── selection.html   # Character picker screen
     ├── pet.html         # The transparent pet window
     └── js/
-        ├── characters.js  # All 10 characters — vector art + quotes + behaviors
+        ├── characters.js  # All characters — vector art, quotes, behaviors, excited animations
         ├── renderer.js    # Animation engine (emotions, particles, idle timer)
         └── pet.js         # Interaction handler (mouse events, drag, IPC)
 ```
@@ -96,11 +97,12 @@ one-piece-desktop-pet/
 
 | Action | How to trigger | Result |
 |--------|---------------|--------|
-| **Hover** | Move mouse over character (hold 400ms) | `hover` emotion + quote |
-| **Pet** | Left-click and hold for 700ms without moving | `pet` emotion + quote |
-| **Click** | Single left-click | `click` emotion + quote |
-| **Double-click** | Double left-click | `dblclick` emotion + quote |
-| **Drag** | Left-click and drag | Moves the window |
+| **Hover** | Hold mouse still over character for 400ms | `pet` emotion + quote |
+| **Click** | Single left-click | `pet` emotion + quote |
+| **Special** | 3 clicks within 1.5 seconds | `special` personal action + quote |
+| **Angry** | Fast drag / shake the window | `angry` emotion + quote |
+| **Sleep** | No interaction for 5 minutes | `sleep` (persistent — wakes on next touch) |
+| **Drag** | Left-click and drag slowly | Moves the window |
 | **Right-click** | Right mouse button | Context menu (Change character / Quit) |
 | **Transparent pixels** | Mouse over empty space around character | Click-through to desktop |
 
@@ -115,16 +117,31 @@ Every character reacts to the same set of interactions with their own unique quo
 | Emotion | Triggered by | Visual | Particles |
 |---------|-------------|--------|-----------|
 | `idle` | Default state | Gentle bob, slow arm sway | — |
-| `hover` | Hovering mouse 400ms | Attentive expression | — |
-| `pet` | Hold-click 700ms | Happy squint eyes, big smile | ❤️ Hearts |
-| `click` | Single click | Wide/angry eyes, screen flash | — |
-| `dblclick` | Double-click | Shocked wide eyes | ⭐ Stars |
-| `happy` | Via tray menu | Jump animation, waving arms | ❤️ Hearts |
-| `excited` | Via tray menu | Bouncing, flailing arms | ⭐ Stars |
-| `angry` | Via tray menu | Screen shake, furrowed brows | 💢 Rage |
-| `sad` | Via tray menu | Droopy eyes, slumped arms | 💧 Tears |
+| `pet` | Hover 400ms / click | Happy squint eyes, big smile | ❤️ Hearts |
+| `special` | 3 rapid clicks (1.5s) | **Character's personal move** — unique per crew member | ⭐+❤️ |
+| `angry` | Fast drag / shake | Screen shake + red flash, furrowed brows | 💢 Rage |
+| `sleep` | 5 min idle (persistent) | Closed eyes, slow breath — wakes on touch | 💤 ZZZs |
 | `wave` | On startup / tray | One arm raised and waving | — |
-| `sleep` | Via tray menu | Closed eyes, slow breath | 💤 ZZZs |
+| `happy` | Via tray menu | Jump animation, waving arms | ❤️ Hearts |
+| `excited` | Via tray menu | **Character-specific animation** (see table below) | varies |
+| `sad` | Via tray menu | Droopy eyes, slumped arms | 💧 Tears |
+
+### Character-Specific Excited Animations
+
+Each character's `excited` state plays a unique animation that matches their personality:
+
+| Character | Excited Style | Particle |
+|-----------|--------------|----------|
+| Luffy | Massive hungry bounce (20px high) — MEAT!! energy | ⭐ |
+| Zoro | Sword-swing arm + battle sway | ⭐ |
+| Nami | Greedy coin-counting arm flick | 💰 |
+| Usopp | Both arms flailing wildly in opposite directions | ⭐ |
+| Sanji | Fast spin-kick shimmy + hearts — Mellorine~! | ❤️ |
+| Chopper | Rapid cute stomp bounce, arms flutter | ❤️ |
+| Robin | Graceful Ara ara sway, flowers bloom | 🌸 |
+| Franky | Rigid SUPER!! double-flex pose + bounce | ⭐ |
+| Brook | Yohohoho rhythm dance, both arms swinging | 🎵 |
+| Jinbe | Powerful slow bob, arms spread wide | 💦 |
 
 ---
 
@@ -146,6 +163,8 @@ Every character reacts to the same set of interactions with their own unique quo
 | sad | "I miss Ace..." · "Nakama..." |
 | sleep | "Zzz...meat..." |
 | wave | "Hey!! OVER HERE!!" · "YOOOO!!" |
+| excited | "MEAT!!" · "Shishishi!!!" |
+| special | "GEAR SECOND!!" · "GOMU GOMU NO JET PISTOL!!" · "I'LL BE KING OF THE PIRATES!!" |
 
 ---
 
@@ -167,6 +186,8 @@ Every character reacts to the same set of interactions with their own unique quo
 | sad | "...I'm lost again." · "Kuina..." |
 | sleep | "Zzz..." |
 | wave | "Oi!" · "...hey." |
+| excited | "The world's greatest!" · "Heh." |
+| special | "ASURA ICHIBUGIN!!" · "THREE THOUSAND WORLDS!!" · "I WILL SURPASS MIHAWK!!" |
 
 ---
 
@@ -188,6 +209,8 @@ Every character reacts to the same set of interactions with their own unique quo
 | sad | "Arlong..." · "My village..." |
 | sleep | "Zz...Beli..." |
 | wave | "Yoohoo~!" · "Over here!" |
+| excited | "A treasure map!" · "Gold!!" |
+| special | "THUNDERBOLT TEMPO!!" · "MIRAGE TEMPO!!" · "PERFECT CLIMA TACT!!" |
 
 ---
 
@@ -209,6 +232,8 @@ Every character reacts to the same set of interactions with their own unique quo
 | sad | "I-I lied..." · "Syrup Village..." |
 | sleep | "Zzz...brave..." |
 | wave | "Over here!! 8000 soldiers!" |
+| excited | "I can do it!!" · "BRAVE WARRIOR!!" |
+| special | "SOGEKING!!" · "KABUTO!!" · "CERTAIN KILL IMPACT WOLF!!" |
 
 ---
 
@@ -230,6 +255,8 @@ Every character reacts to the same set of interactions with their own unique quo
 | sad | "...All Blue..." · "Baratie..." |
 | sleep | "Zzz...Nami-san..." |
 | wave | "Nami-SAN~ ♥" · "Ohhh ladies~" |
+| excited | "MELLORINE!!" · "Oh ho ho ho!" |
+| special | "DIABLE JAMBE!!" · "HELL MEMORIES!!" · "SKY WALK!!" |
 
 ---
 
@@ -251,6 +278,8 @@ Every character reacts to the same set of interactions with their own unique quo
 | sad | "Doctorine..." · "Hiriluk..." |
 | sleep | "Zzz...cotton candy..." |
 | wave | "YOIII!! HI!!" · "Hiiii~" |
+| excited | "Yoii yoii!!" · "WOOOAH!!" |
+| special | "MONSTER POINT!!" · "RUMBLE BALL!!" · "HORN POINT!!" |
 
 ---
 
@@ -272,6 +301,8 @@ Every character reacts to the same set of interactions with their own unique quo
 | sad | "...Ohara..." · "I want to live." |
 | sleep | "Zzz...ruins..." |
 | wave | "...Ara." · "Over here." |
+| excited | "Ara ara ara~" · "A Poneglyph!!" |
+| special | "GIGANTE FLEUR!!" · "DEMONIO FLEUR!!" · "Cien Fleur: Clutch!!" |
 
 ---
 
@@ -293,6 +324,8 @@ Every character reacts to the same set of interactions with their own unique quo
 | sad | "Tom-san..." · "...SUPER sad." |
 | sleep | "Zzz...cola..." |
 | wave | "SUPER!! HEYYY!!" · "YOOO SUPER!!" |
+| excited | "SUPER SUPER SUPER!!" · "The Thousand Sunny!!" |
+| special | "FRANKY SHOGUN!!" · "COUP DE VENT!!" · "GENERAL CANNON!!" |
 
 ---
 
@@ -314,6 +347,8 @@ Every character reacts to the same set of interactions with their own unique quo
 | sad | "Laboon..." · "My crew..." |
 | sleep | "Zzz...yohoho..." |
 | wave | "YOHOHOHO!! HEEEY!!" · "Soul King is here!!" |
+| excited | "YOHOHOHOHO!!" · "SKULL JOKE!!" |
+| special | "SOUL PARADE!!" · "NEMURIUTA FLANC!!" · "AUBADE COUP DROIT!!" |
 
 ---
 
@@ -335,6 +370,8 @@ Every character reacts to the same set of interactions with their own unique quo
 | sad | "Tiger-san..." · "Arlong..." |
 | sleep | "Zzz...ocean..." |
 | wave | "HEYYYY!!" · "Come, join us!" |
+| excited | "NAKAMA!!" · "The Straw Hats!!" |
+| special | "FISH-MAN KARATE!!" · "BURAIKAN!!" · "THOUSAND SHARK!!" |
 
 ---
 

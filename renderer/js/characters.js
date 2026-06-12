@@ -91,6 +91,15 @@ window.CHARACTERS = [
     excited:["MEAT!!","Shishishi!!!"],
     special:["GEAR SECOND!!","GOMU GOMU NO JET PISTOL!!","I'LL BE KING OF THE PIRATES!!"],
   },
+  excited:{
+    anim(S,tick,spawn){
+      // Luffy: massive hungry bounce — MEAT!! energy
+      S.animOffset=-Math.abs(Math.sin(tick*0.28))*20;
+      S.armL=-1.0+Math.sin(tick*0.35)*0.5;
+      S.armR=1.0+Math.sin(tick*0.35+1)*0.5;
+      if(tick%7===0)spawn('star');
+    }
+  },
   draw(ctx,S){
     const em=S.isBlinking?'blink':S.emotion;
     const cx=S.cx, cy=S.cy;
@@ -170,6 +179,15 @@ window.CHARACTERS = [
     wave:["...Fine. Hello.","I grace you with my presence.","Hmph~ wave back."],
     excited:["LUFFY-KUN!! ♥♥","My heart!!","Kyaaaa~~ ♥"],
     special:["SLAVE ARROW!!","PERFUME FEMUR!!","MERO MERO MELLOW!!","Love Love Beam!! ♥"],
+  },
+  excited:{
+    anim(S,tick,spawn){
+      // Hancock: composed flutter — heart-pounding for Luffy-kun
+      S.animOffset=Math.sin(tick*0.1)*4;
+      S.armL=-0.2+Math.sin(tick*0.15)*0.2;
+      S.armR=0.3+Math.sin(tick*0.12)*0.15;
+      if(tick%12===0)spawn('heart');
+    }
   },
   draw(ctx,S){
     const em=S.isBlinking?'blink':S.emotion;
@@ -419,6 +437,15 @@ window.CHARACTERS = [
     excited:["The world's greatest!","Heh."],
     special:["ASURA ICHIBUGIN!!","THREE THOUSAND WORLDS!!","I WILL SURPASS MIHAWK!!","ONI GIRI!!"],
   },
+  excited:{
+    anim(S,tick,spawn){
+      // Zoro: sword-swing battle readiness
+      S.animOffset=Math.sin(tick*0.15)*5;
+      S.armR=Math.sin(tick*0.4)*1.3;
+      S.armL=-0.3+Math.sin(tick*0.12)*0.15;
+      if(tick%12===0)spawn('star');
+    }
+  },
   draw(ctx,S){
     const em=S.isBlinking?'blink':S.emotion;
     const cx=S.cx, cy=S.cy;
@@ -517,6 +544,15 @@ window.CHARACTERS = [
     excited:["A treasure map!","Gold!!"],
     special:["THUNDERBOLT TEMPO!!","MIRAGE TEMPO!!","That's triple the price, idiot!!","PERFECT CLIMA TACT!!"],
   },
+  excited:{
+    anim(S,tick,spawn){
+      // Nami: greedy coin-counting arm + sway
+      S.animOffset=Math.sin(tick*0.25)*7;
+      S.armL=0.1;
+      S.armR=-0.4+Math.sin(tick*0.3)*0.6;
+      if(tick%9===0)spawn('coin');
+    }
+  },
   draw(ctx,S){
     const em=S.isBlinking?'blink':S.emotion;
     const cx=S.cx, cy=S.cy;
@@ -603,6 +639,15 @@ window.CHARACTERS = [
     wave:["Over here!! 8000 soldiers!","HEEEY!!"],
     excited:["I can do it!!","BRAVE WARRIOR!!"],
     special:["SOGEKING!!","KABUTO!!","CERTAIN KILL IMPACT WOLF!!","I am the brave warrior of the sea!!"],
+  },
+  excited:{
+    anim(S,tick,spawn){
+      // Usopp: panicked brave flailing — both arms going wild
+      S.animOffset=Math.sin(tick*0.22)*9;
+      S.armL=Math.sin(tick*0.35)*1.2;
+      S.armR=-Math.sin(tick*0.35+1.5)*1.1;
+      if(tick%11===0)spawn('star');
+    }
   },
   draw(ctx,S){
     const em=S.isBlinking?'blink':S.emotion;
@@ -694,6 +739,15 @@ window.CHARACTERS = [
     wave:["Nami-SAN~ ♥","Ohhh ladies~"],
     excited:["MELLORINE!!","Oh ho ho ho!"],
     special:["DIABLE JAMBE!!","HELL MEMORIES!!","POÊLE À FRIRE: SPECTRE!!","SKY WALK!!"],
+  },
+  excited:{
+    anim(S,tick,spawn){
+      // Sanji: spin-kick shimmy + Mellorine~ hearts
+      S.animOffset=Math.sin(tick*0.3)*11;
+      S.armL=Math.sin(tick*0.28)*0.9;
+      S.armR=0.7+Math.sin(tick*0.2)*0.4;
+      if(tick%10===0)spawn('heart');
+    }
   },
   draw(ctx,S){
     const em=S.isBlinking?'blink':S.emotion;
@@ -801,6 +855,15 @@ window.CHARACTERS = [
     excited:["Yoii yoii!!","WOOOAH!!"],
     special:["MONSTER POINT!!","RUMBLE BALL!!","HORN POINT!!","Walk Point!! Guard Point!! Arm Point!!"],
   },
+  excited:{
+    anim(S,tick,spawn){
+      // Chopper: rapid cute stomp bounce, arms flutter
+      S.animOffset=-Math.abs(Math.sin(tick*0.4))*11;
+      S.armL=Math.sin(tick*0.5)*0.7;
+      S.armR=-Math.sin(tick*0.5+1)*0.7;
+      if(tick%14===0)spawn('heart');
+    }
+  },
   draw(ctx,S){
     const em=S.isBlinking?'blink':S.emotion;
     const cx=S.cx, cy=S.cy;
@@ -886,6 +949,15 @@ window.CHARACTERS = [
     wave:["...Ara.","Over here."],
     excited:["Ara ara ara~","A Poneglyph!!"],
     special:["GIGANTE FLEUR!!","DEMONIO FLEUR!!","Cien Fleur: Clutch!!","Ocho Fleur!!"],
+  },
+  excited:{
+    anim(S,tick,spawn){
+      // Robin: graceful Ara ara sway — restrained excitement, flowers bloom
+      S.animOffset=Math.sin(tick*0.12)*5;
+      S.armL=-0.25+Math.sin(tick*0.14)*0.2;
+      S.armR=0.25+Math.sin(tick*0.12+1)*0.2;
+      if(tick%12===0)spawn('flower');
+    }
   },
   draw(ctx,S){
     const em=S.isBlinking?'blink':S.emotion;
@@ -976,6 +1048,15 @@ window.CHARACTERS = [
     wave:["SUPER!! HEYYY!!","YOOO SUPER!!"],
     excited:["SUPER SUPER SUPER!!","The Thousand Sunny!!"],
     special:["FRANKY SHOGUN!!","COUP DE VENT!!","GENERAL CANNON!!","SUPER DOCKING!!"],
+  },
+  excited:{
+    anim(S,tick,spawn){
+      // Franky: rigid SUPER!! double-flex pose + bounce
+      S.armL=-1.1+Math.sin(tick*0.15)*0.15;
+      S.armR=1.1+Math.sin(tick*0.15+1)*0.15;
+      S.animOffset=-Math.abs(Math.sin(tick*0.18))*8;
+      if(tick%8===0)spawn('star');
+    }
   },
   draw(ctx,S){
     const em=S.isBlinking?'blink':S.emotion;
@@ -1070,6 +1151,15 @@ window.CHARACTERS = [
     wave:["YOHOHOHO!! HEEEY!!","Soul King is here!!"],
     excited:["YOHOHOHOHO!!","SKULL JOKE!!"],
     special:["SOUL PARADE!!","NEMURIUTA FLANC!!","AUBADE COUP DROIT!!","YOHOHOHO!! SKULL JOKE!!"],
+  },
+  excited:{
+    anim(S,tick,spawn){
+      // Brook: Yohohoho rhythm dance, music notes fly
+      S.animOffset=Math.sin(tick*0.22)*12;
+      S.armL=Math.sin(tick*0.28)*1.0;
+      S.armR=-Math.sin(tick*0.28+1.2)*1.0;
+      if(tick%10===0)spawn('music');
+    }
   },
   draw(ctx,S){
     const em=S.isBlinking?'blink':S.emotion;
@@ -1169,6 +1259,15 @@ window.CHARACTERS = [
     wave:["HEYYYY!!","Come, join us!"],
     excited:["NAKAMA!!","The Straw Hats!!"],
     special:["FISH-MAN KARATE!!","BURAIKAN!!","THOUSAND SHARK!!","VAGABOND DRILL!!"],
+  },
+  excited:{
+    anim(S,tick,spawn){
+      // Jinbe: powerful slow bob, arms spread — calm but powerful joy
+      S.animOffset=Math.sin(tick*0.09)*7;
+      S.armL=-0.5+Math.sin(tick*0.12)*0.2;
+      S.armR=0.5+Math.sin(tick*0.1+1)*0.2;
+      if(tick%22===0)spawn('drop');
+    }
   },
   draw(ctx,S){
     const em=S.isBlinking?'blink':S.emotion;

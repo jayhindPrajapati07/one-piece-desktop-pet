@@ -118,10 +118,14 @@ class PetRenderer {
           if (S.tick % 18 === 0) this._spawn('heart');
           break;
         case 'excited':
-          S.animOffset = Math.sin(S.tick * 0.22) * 10;
-          S.armL = -0.8 + Math.sin(S.tick * 0.3) * 0.6;
-          S.armR = 0.8 + Math.sin(S.tick * 0.3 + 1) * 0.6;
-          if (S.tick % 10 === 0) this._spawn('star');
+          if (this.char.excited?.anim) {
+            this.char.excited.anim(S, S.tick, (t) => this._spawn(t));
+          } else {
+            S.animOffset = Math.sin(S.tick * 0.22) * 10;
+            S.armL = -0.8 + Math.sin(S.tick * 0.3) * 0.6;
+            S.armR = 0.8 + Math.sin(S.tick * 0.3 + 1) * 0.6;
+            if (S.tick % 10 === 0) this._spawn('star');
+          }
           break;
         case 'angry':
           S.animOffset = Math.sin(S.tick * 0.5) * 4;
