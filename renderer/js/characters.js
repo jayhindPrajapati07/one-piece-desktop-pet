@@ -155,7 +155,7 @@ window.CHARACTERS = [
 //    snake Salome, gold jewellery, beauty mark, blush, stilettos
 // ══════════════════════════════════════════════════════════════════════════════
 {
-  id:'hancock', name:'Boa Hancock', role:'Pirate Empress', color:'#d63384',
+  id:'hancock', name:'Boa Hancock', role:'Pirate Empress', color:'#d63384', hidden:true,
   idleBehaviors:['sniff','bloom_flowers','look_around'],
   quotes:{
     idle:["Beauty is justice.","Hmph.","I am the most beautiful..."],

@@ -113,7 +113,7 @@
   <script>
     const grid = document.getElementById('grid');
 
-    CHARACTERS.forEach((char, i) => {
+    CHARACTERS.filter(c => !c.hidden).forEach((char, i) => {
       const card = document.createElement('div');
       card.className = 'card';
       card.style.setProperty('--col', char.color || '#f7c948');
