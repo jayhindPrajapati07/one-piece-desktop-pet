@@ -2,7 +2,8 @@
 
 A lightweight Electron desktop mascot featuring all 10 Straw Hat Pirates. Your chosen character sits on your screen, reacts to your mouse interactions, shows speech bubbles, and runs idle animations — all with a transparent, always-on-top frameless window.
 
-![One Piece Desktop Pet](https://raw.githubusercontent.com/jayhindPrajapati07/one-piece-desktop-pet/main/assets/preview.png)
+![One Piece Desktop Pet]<img width="1440" height="1050" alt="image" src="https://github.com/user-attachments/assets/70f2e34b-61fa-498d-9516-a4b96e7a47dd" />
+
 
 ---
 
