@@ -44,17 +44,18 @@ class PetRenderer {
     this.flashAlpha = 0;
     this.idleBehav = null;
 
-    if (emotion === 'click') {
-      this.flashAlpha = 0.5;
+    if (emotion === 'special') {
+      this.flashAlpha = 0.45;
       this.flashColor = this.char.color || '#fff';
     }
-    if (emotion === 'dblclick') {
-      this.flashAlpha = 0.8;
-      this.flashColor = '#fff';
+    if (emotion === 'angry') {
+      this.flashAlpha = 0.4;
+      this.flashColor = '#ff2200';
     }
 
     clearTimeout(this.emotionTimer);
-    if (emotion !== 'idle') {
+    // duration === 0 means persistent (sleep) — no auto-return to idle
+    if (emotion !== 'idle' && duration > 0) {
       this.emotionTimer = setTimeout(() => {
         S.emotion = 'idle';
         this.idleBehav = null;
@@ -62,10 +63,12 @@ class PetRenderer {
       }, duration);
     }
 
-    this._resetIdleTimer();
+    if (emotion !== 'sleep') this._resetIdleTimer();
   }
 
   triggerIdle() {
+    // Don't interrupt sleep — pet.js owns that state
+    if (this.state.emotion === 'sleep') { this._resetIdleTimer(); return; }
     const behaviors = this.char.idleBehaviors || ['look_around'];
     this.idleBehav = behaviors[Math.floor(Math.random() * behaviors.length)];
     this.idleBehavTick = 0;
@@ -153,6 +156,13 @@ class PetRenderer {
           S.animOffset = Math.sin(S.tick * 0.1) * 4;
           S.armL = Math.sin(S.tick * 0.15) * 0.3;
           if (S.tick % 20 === 0) this._spawn('heart');
+          break;
+        case 'special':
+          S.animOffset = Math.sin(S.tick * 0.22) * 14;
+          S.armL = -1.0 + Math.sin(S.tick * 0.28) * 0.5;
+          S.armR =  1.0 + Math.sin(S.tick * 0.28 + 1) * 0.5;
+          if (S.tick % 6 === 0)  this._spawn('star');
+          if (S.tick % 14 === 0) this._spawn('heart');
           break;
         case 'hover':
           S.animOffset = Math.sin(S.tick * 0.08) * 4;
