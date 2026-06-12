@@ -112,10 +112,12 @@ class PetRenderer {
           S.armR = Math.sin(S.tick * 0.05 + 1) * 0.08;
           break;
         case 'happy':
-          S.animOffset = -Math.abs(Math.sin(S.tick * 0.12)) * 8;
-          S.armL = -0.6 + Math.sin(S.tick * 0.2) * 0.3;
-          S.armR = 0.6 + Math.sin(S.tick * 0.2 + 1) * 0.3;
-          if (S.tick % 18 === 0) this._spawn('heart');
+          if (this.char.happy?.anim) {
+            this.char.happy.anim(S, S.tick, (t) => this._spawn(t));
+          } else {
+            S.animOffset = -Math.abs(Math.sin(S.tick * 0.12)) * 8;
+            if (S.tick % 18 === 0) this._spawn('heart');
+          }
           break;
         case 'excited':
           if (this.char.excited?.anim) {
@@ -128,19 +130,28 @@ class PetRenderer {
           }
           break;
         case 'angry':
-          S.animOffset = Math.sin(S.tick * 0.5) * 4;
-          S.cx = this.canvas.width / 2 + Math.sin(S.tick * 0.6) * 5;
-          if (S.tick % 14 === 0) this._spawn('rage');
+          if (this.char.angry?.anim) {
+            this.char.angry.anim(S, S.tick, (t) => this._spawn(t));
+          } else {
+            S.animOffset = Math.sin(S.tick * 0.5) * 4;
+            S.cx = this.canvas.width / 2 + Math.sin(S.tick * 0.6) * 5;
+            if (S.tick % 14 === 0) this._spawn('rage');
+          }
           break;
         case 'sad':
-          S.animOffset = 2;
-          S.armL = 0.15; S.armR = -0.15;
-          if (S.tick % 45 === 0) this._spawn('tear');
+          if (this.char.sad?.anim) {
+            this.char.sad.anim(S, S.tick, (t) => this._spawn(t));
+          } else {
+            S.animOffset = 2;
+            if (S.tick % 45 === 0) this._spawn('tear');
+          }
           break;
         case 'wave':
-          S.animOffset = Math.sin(S.tick * 0.06) * 2;
-          S.armR = -1.0 + Math.sin(S.tick * 0.18) * 0.6;
-          S.armL = 0.1;
+          if (this.char.wave?.anim) {
+            this.char.wave.anim(S, S.tick, (t) => this._spawn(t));
+          } else {
+            S.animOffset = Math.sin(S.tick * 0.06) * 2;
+          }
           break;
         case 'sleep':
           S.animOffset = Math.sin(S.tick * 0.02) * 1.5;
@@ -162,11 +173,13 @@ class PetRenderer {
           if (S.tick % 20 === 0) this._spawn('heart');
           break;
         case 'special':
-          S.animOffset = Math.sin(S.tick * 0.22) * 14;
-          S.armL = -1.0 + Math.sin(S.tick * 0.28) * 0.5;
-          S.armR =  1.0 + Math.sin(S.tick * 0.28 + 1) * 0.5;
-          if (S.tick % 6 === 0)  this._spawn('star');
-          if (S.tick % 14 === 0) this._spawn('heart');
+          if (this.char.special?.anim) {
+            this.char.special.anim(S, S.tick, (t) => this._spawn(t));
+          } else {
+            S.animOffset = Math.sin(S.tick * 0.22) * 14;
+            if (S.tick % 6 === 0)  this._spawn('star');
+            if (S.tick % 14 === 0) this._spawn('heart');
+          }
           break;
         case 'hover':
           S.animOffset = Math.sin(S.tick * 0.08) * 4;
@@ -174,8 +187,10 @@ class PetRenderer {
       }
     }
 
-    // Restore cx to center after angry shake fades
-    if (S.emotion !== 'angry') S.cx += (this.canvas.width / 2 - S.cx) * 0.1;
+    // Restore cx to center; skip when a char-specific anim controls cx itself
+    if (!this.char[S.emotion]?.anim && S.emotion !== 'angry') {
+      S.cx += (this.canvas.width / 2 - S.cx) * 0.1;
+    }
 
     // Update particles
     this.particles = this.particles.filter(p => p.life > 0);

@@ -100,6 +100,26 @@ window.CHARACTERS = [
       if(tick%7===0)spawn('star');
     }
   },
+  happy:{anim(S,t,spawn){
+    S.animOffset=-Math.abs(Math.sin(t*0.18))*16; // huge meat-excited bounce
+    if(t%14===0)spawn('heart'); if(t%22===0)spawn('star');
+  }},
+  angry:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.45)*6; S.cx=100+Math.sin(t*0.55)*7; // protect nakama rage
+    if(t%12===0)spawn('rage');
+  }},
+  sad:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.025)*2+4; // heavy slump — Ace...
+    if(t%40===0)spawn('tear');
+  }},
+  wave:{anim(S,t,spawn){
+    S.animOffset=-Math.abs(Math.sin(t*0.16))*10; // bouncy energetic wave
+    if(t%25===0)spawn('star');
+  }},
+  special:{anim(S,t,spawn){
+    S.animOffset=-Math.abs(Math.sin(t*0.35))*18; S.cx=100+Math.sin(t*0.3)*5; // Gear 2nd pump
+    if(t%5===0)spawn('star'); if(t%11===0)spawn('heart');
+  }},
   draw(ctx,S){
     const em=S.isBlinking?'blink':S.emotion;
     const cx=S.cx, cy=S.cy;
@@ -189,6 +209,26 @@ window.CHARACTERS = [
       if(tick%12===0)spawn('heart');
     }
   },
+  happy:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.09)*3; // composed Luffy-kun flutter
+    if(t%14===0)spawn('heart');
+  }},
+  angry:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.25)*3; S.cx=100+Math.sin(t*0.28)*4; // cold fury — STONE!!
+    if(t%13===0)spawn('rage');
+  }},
+  sad:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.02)*1.5+3; // the mark on my back...
+    if(t%55===0)spawn('tear');
+  }},
+  wave:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.06)*2; // dignified composed wave
+    if(t%35===0)spawn('heart');
+  }},
+  special:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.12)*5; // Mero Mero Mellow — graceful arm extend
+    if(t%8===0)spawn('heart'); if(t%18===0)spawn('star');
+  }},
   draw(ctx,S){
     const em=S.isBlinking?'blink':S.emotion;
     const cx=S.cx, cy=S.cy;
@@ -446,6 +486,25 @@ window.CHARACTERS = [
       if(tick%12===0)spawn('star');
     }
   },
+  happy:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.06)*3; // barely reacts — subtle nod
+    if(t%50===0)spawn('star');
+  }},
+  angry:{anim(S,t,spawn){
+    S.cx=100+Math.sin(t*0.5)*8; S.animOffset=Math.sin(t*0.4)*4; // battle stance shake
+    if(t%10===0)spawn('rage');
+  }},
+  sad:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.02)*1.5+4; // barely moves — Kuina...
+    if(t%50===0)spawn('tear');
+  }},
+  wave:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.04)*1.5; // stiff minimal wave — Zoro doesn't wave
+  }},
+  special:{anim(S,t,spawn){
+    S.cx=100+Math.sin(t*0.3)*10; S.animOffset=Math.sin(t*0.18)*6; // Asura multi-slash sway
+    if(t%8===0)spawn('star');
+  }},
   draw(ctx,S){
     const em=S.isBlinking?'blink':S.emotion;
     const cx=S.cx, cy=S.cy;
@@ -553,6 +612,26 @@ window.CHARACTERS = [
       if(tick%9===0)spawn('coin');
     }
   },
+  happy:{anim(S,t,spawn){
+    S.animOffset=-Math.abs(Math.sin(t*0.2))*10; // coin-excited hop
+    if(t%10===0)spawn('coin');
+  }},
+  angry:{anim(S,t,spawn){
+    S.cx=100+Math.sin(t*0.45)*6; S.animOffset=Math.sin(t*0.4)*5; // foot-stamp rage
+    if(t%11===0)spawn('rage');
+  }},
+  sad:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.03)*2+3; // Arlong... village...
+    if(t%42===0)spawn('tear');
+  }},
+  wave:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.1)*4; S.cx=100+Math.sin(t*0.08)*4; // flirty tilt-wave
+    if(t%30===0)spawn('heart');
+  }},
+  special:{anim(S,t,spawn){
+    S.animOffset=-Math.abs(Math.sin(t*0.3))*14; // Thunderbolt Tempo — arm shoots up
+    if(t%6===0)spawn('star');
+  }},
   draw(ctx,S){
     const em=S.isBlinking?'blink':S.emotion;
     const cx=S.cx, cy=S.cy;
@@ -649,6 +728,26 @@ window.CHARACTERS = [
       if(tick%11===0)spawn('star');
     }
   },
+  happy:{anim(S,t,spawn){
+    S.animOffset=-Math.abs(Math.sin(t*0.22))*12; // hero pose pump — brave warrior!!
+    if(t%15===0)spawn('star');
+  }},
+  angry:{anim(S,t,spawn){
+    S.cx=100+Math.sin(t*0.8)*5; S.animOffset=Math.sin(t*0.55)*4; // scared-angry trembling
+    if(t%12===0)spawn('rage');
+  }},
+  sad:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.03)*1.5+3; // I lied... trembling slump
+    if(t%38===0)spawn('tear');
+  }},
+  wave:{anim(S,t,spawn){
+    S.animOffset=-Math.abs(Math.sin(t*0.2))*8; // frantic both-arm bounce wave
+    if(t%20===0)spawn('star');
+  }},
+  special:{anim(S,t,spawn){
+    S.animOffset=-Math.abs(Math.sin(t*0.25))*13; // Sogeking!! — stands tall and proud
+    if(t%7===0)spawn('star');
+  }},
   draw(ctx,S){
     const em=S.isBlinking?'blink':S.emotion;
     const cx=S.cx, cy=S.cy;
@@ -749,6 +848,26 @@ window.CHARACTERS = [
       if(tick%10===0)spawn('heart');
     }
   },
+  happy:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.2)*9; S.cx=100+Math.sin(t*0.18)*5; // Mellorine~ spin flourish
+    if(t%12===0)spawn('heart');
+  }},
+  angry:{anim(S,t,spawn){
+    S.cx=100+Math.sin(t*0.42)*6; S.animOffset=Math.sin(t*0.38)*5; // Diable Jambe fury
+    if(t%10===0)spawn('rage');
+  }},
+  sad:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.025)*2+3; // cigarette slump — All Blue...
+    if(t%45===0)spawn('tear');
+  }},
+  wave:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.08)*3; S.cx=100+Math.sin(t*0.06)*3; // gentleman's flourish
+    if(t%22===0)spawn('heart');
+  }},
+  special:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.38)*14; S.cx=100+Math.sin(t*0.32)*9; // Hell Memories spin
+    if(t%7===0)spawn('heart'); if(t%14===0)spawn('star');
+  }},
   draw(ctx,S){
     const em=S.isBlinking?'blink':S.emotion;
     const cx=S.cx, cy=S.cy;
@@ -864,6 +983,26 @@ window.CHARACTERS = [
       if(tick%14===0)spawn('heart');
     }
   },
+  happy:{anim(S,t,spawn){
+    S.animOffset=-Math.abs(Math.sin(t*0.45))*13; // super-fast cute bounce
+    if(t%12===0)spawn('heart');
+  }},
+  angry:{anim(S,t,spawn){
+    S.animOffset=-Math.abs(Math.sin(t*0.5))*7; // stomp stomp — not cute IDIOT!!
+    if(t%10===0)spawn('rage');
+  }},
+  sad:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.02)*1.5+4; // Hiriluk... very slow tiny droop
+    if(t%35===0)spawn('tear');
+  }},
+  wave:{anim(S,t,spawn){
+    S.animOffset=-Math.abs(Math.sin(t*0.3))*10; // jump-wave YOIII!!
+    if(t%18===0)spawn('heart');
+  }},
+  special:{anim(S,t,spawn){
+    S.animOffset=-Math.abs(Math.sin(t*0.32))*16; // Monster Point — biggest bounce
+    if(t%6===0)spawn('star'); if(t%15===0)spawn('heart');
+  }},
   draw(ctx,S){
     const em=S.isBlinking?'blink':S.emotion;
     const cx=S.cx, cy=S.cy;
@@ -959,6 +1098,26 @@ window.CHARACTERS = [
       if(tick%12===0)spawn('flower');
     }
   },
+  happy:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.09)*4; // gentle ara ara sway
+    if(t%18===0)spawn('flower');
+  }},
+  angry:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.3)*3; // ice-cold sudden jerk — I'll break you
+    if(t%14===0)spawn('rage');
+  }},
+  sad:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.02)*1.5+2; // Ohara... almost no movement
+    if(t%50===0)spawn('tear');
+  }},
+  wave:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.07)*3; // graceful single-arm lift
+    if(t%30===0)spawn('flower');
+  }},
+  special:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.1)*5; // Gigante Fleur — arms spread, flowers burst
+    if(t%8===0)spawn('flower'); if(t%18===0)spawn('star');
+  }},
   draw(ctx,S){
     const em=S.isBlinking?'blink':S.emotion;
     const cx=S.cx, cy=S.cy;
@@ -1058,6 +1217,26 @@ window.CHARACTERS = [
       if(tick%8===0)spawn('star');
     }
   },
+  happy:{anim(S,t,spawn){
+    S.animOffset=-Math.abs(Math.sin(t*0.2))*10; // SUPER!! pose bounce
+    if(t%10===0)spawn('star');
+  }},
+  angry:{anim(S,t,spawn){
+    S.cx=100+Math.sin(t*0.4)*8; S.animOffset=Math.sin(t*0.45)*6; // heavy stomp slam
+    if(t%10===0)spawn('rage');
+  }},
+  sad:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.025)*2+4; // Tom-san... head hangs heavy
+    if(t%45===0)spawn('tear');
+  }},
+  wave:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.08)*3; // massive sweeping arm wave
+    if(t%20===0)spawn('star');
+  }},
+  special:{anim(S,t,spawn){
+    S.cx=100+Math.sin(t*0.2)*7; S.animOffset=-Math.abs(Math.sin(t*0.22))*12; // Coup de Vent blast
+    if(t%5===0)spawn('star');
+  }},
   draw(ctx,S){
     const em=S.isBlinking?'blink':S.emotion;
     const cx=S.cx, cy=S.cy;
@@ -1161,6 +1340,26 @@ window.CHARACTERS = [
       if(tick%10===0)spawn('music');
     }
   },
+  happy:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.18)*9; // skull joke bounce laugh
+    if(t%15===0)spawn('star'); if(t%25===0)spawn('music');
+  }},
+  angry:{anim(S,t,spawn){
+    S.cx=100+Math.sin(t*0.7)*6; S.animOffset=Math.sin(t*0.55)*5; // rattling bones shake
+    if(t%11===0)spawn('rage');
+  }},
+  sad:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.025)*2+3; // Laboon... lonely sway
+    if(t%40===0)spawn('tear');
+  }},
+  wave:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.08)*3; // top-hat elegant sway
+    if(t%20===0)spawn('music');
+  }},
+  special:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.28)*14; // Soul Parade — full dance
+    if(t%7===0)spawn('music'); if(t%16===0)spawn('star');
+  }},
   draw(ctx,S){
     const em=S.isBlinking?'blink':S.emotion;
     const cx=S.cx, cy=S.cy;
@@ -1269,6 +1468,26 @@ window.CHARACTERS = [
       if(tick%22===0)spawn('drop');
     }
   },
+  happy:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.07)*5; // deep satisfied nod
+    if(t%28===0)spawn('drop');
+  }},
+  angry:{anim(S,t,spawn){
+    S.cx=100+Math.sin(t*0.22)*10; S.animOffset=Math.sin(t*0.18)*5; // wide intimidating Fish-Man stance
+    if(t%13===0)spawn('rage');
+  }},
+  sad:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.02)*2+4; // Tiger-san... solemn stillness
+    if(t%48===0)spawn('tear');
+  }},
+  wave:{anim(S,t,spawn){
+    S.animOffset=Math.sin(t*0.07)*4; // broad deliberate slow wave
+    if(t%25===0)spawn('drop');
+  }},
+  special:{anim(S,t,spawn){
+    S.cx=100+Math.sin(t*0.14)*12; S.animOffset=Math.sin(t*0.1)*7; // Buraikan wide stance
+    if(t%10===0)spawn('drop'); if(t%20===0)spawn('star');
+  }},
   draw(ctx,S){
     const em=S.isBlinking?'blink':S.emotion;
     const cx=S.cx, cy=S.cy;
