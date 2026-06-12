@@ -9,14 +9,22 @@
     "build": "electron-builder"
   },
   "devDependencies": {
+    "canvas": "^3.2.3",
     "electron": "^31.0.0",
     "electron-builder": "^24.0.0"
   },
   "build": {
     "appId": "com.desktoppet.app",
     "productName": "Desktop Pet",
-    "mac": { "category": "public.app-category.entertainment" },
-    "win": { "target": "nsis" },
-    "linux": { "target": "AppImage" }
+    "icon": "assets/icon.png",
+    "mac": {
+      "category": "public.app-category.entertainment"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
   }
 }

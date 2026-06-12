@@ -1,6 +1,8 @@
 const { app, BrowserWindow, ipcMain, Menu, Tray, screen, nativeImage } = require("electron");
 const path = require("path");
 
+const APP_ICON = path.join(__dirname, "assets", "icon.png");
+
 let selectionWindow = null;
 let petWindow       = null;
 let tray            = null;
@@ -20,6 +22,7 @@ function createSelectionWindow() {
     center: true,
     title: "Choose Your Nakama",
     backgroundColor: "#0d0d1a",
+    icon: APP_ICON,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       contextIsolation: true,
@@ -269,5 +272,8 @@ ipcMain.on("stop-window-drag", () => { dragState = null; });
 
 // ── Boot ──────────────────────────────────────────────────────────────────────
 
-app.whenReady().then(createSelectionWindow);
+app.whenReady().then(() => {
+  if (process.platform === "darwin") app.dock.setIcon(APP_ICON);
+  createSelectionWindow();
+});
 app.on("window-all-closed", () => app.quit());
